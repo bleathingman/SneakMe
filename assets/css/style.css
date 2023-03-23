@@ -48,3 +48,8 @@ table th {
 table tbody tr:nth-child(odd) {
     background-color: #f9f9f9;
 }
+
+img {
+    width: 200px;
+    height: 140px;
+}
