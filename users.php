@@ -23,27 +23,33 @@ $result = $conn->query($sql);
 
 <body>
     <?php require 'templates/header.php'; ?>
-    <h1>Users</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()) : ?>
-                <tr>
-                    <td><?php echo $row["id"]; ?></td>
-                    <td><?php echo $row["username"]; ?></td>
-                    <td><?php echo $row["email"]; ?></td>
-                    <td><?php echo $row["status"]; ?></td>
-                </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+    <div class="container-fluid py-5">
+        <div class="row">
+            <main class="col-lg-12">
+                <h1>Users</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $result->fetch_assoc()) : ?>
+                            <tr>
+                                <td><?php echo $row["id"]; ?></td>
+                                <td><?php echo $row["username"]; ?></td>
+                                <td><?php echo $row["email"]; ?></td>
+                                <td><?php echo $row["status"]; ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
 

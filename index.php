@@ -16,11 +16,18 @@ if (!isset($_SESSION["user_id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <?php require 'templates/header.php'; ?>
-    <h1>Welcome to the Sneakers E-commerce Dashboard</h1>
+    <div class="container-fluid py-5">
+        <div class="row">
+            <main class="col-lg-12">
+                <h1>Dashboard SneakMe</h1>
+        </div>
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
 

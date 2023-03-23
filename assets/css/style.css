@@ -6,20 +6,70 @@ body {
     padding: 0;
 }
 
-nav {
-    background-color: #333;
-    padding: 1rem;
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #1A1D21;
+    overflow-x: hidden;
+    padding-top: 20px;
 }
 
-nav a {
-    color: #fff;
-    margin-right: 1rem;
+.sidebar a {
+    display: block;
+    padding: 10px;
     text-decoration: none;
+    color: #E5E5E5;
+    font-size: 18px;
+    border-bottom: 1px solid #25282C;
 }
 
-nav a:hover {
-    color: #ccc;
+.sidebar a:hover {
+    background-color: #25282C;
+    color: #fff;
 }
+
+.sidebar a:first-child {
+    margin-top: 0;
+}
+
+.sidebar a:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+    color: #E5E5E5;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar a {
+        float: left;
+    }
+}
+
+
+.row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
 
 h1 {
     font-size: 2rem;
@@ -51,5 +101,4 @@ table tbody tr:nth-child(odd) {
 
 img {
     width: 200px;
-    height: 140px;
 }

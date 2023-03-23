@@ -1,39 +1,25 @@
 <?php
 require_once 'config.php';
 
-// Vérification de l'envoi du fichier
-if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
-  // Vérification de la taille du fichier
-  if ($_FILES['image']['size'] <= 1000000) {
-    // Vérification de l'extension du fichier
-    $info = pathinfo($_FILES['image']['name']);
-    $extension = $info['extension'];
-    $allowed_extensions = array('jpg', 'jpeg', 'png');
+// Vérification de la soumission du formulaire
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Récupération des données du formulaire
+  $name = $_POST['name'];
+  $brand = $_POST['brand'];
+  $color = $_POST['color'];
+  $size = $_POST['size'];
+  $price = $_POST['price'];
+  $image = $_POST['image'];
 
-    if (in_array($extension, $allowed_extensions)) {
-      // Enregistrement du fichier
-      move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . basename($_FILES['image']['name']));
-      
-      // Enregistrement du produit dans la base de données
-      $name = $_POST['name'];
-      $brand = $_POST['brand'];
-      $color = $_POST['color'];
-      $size = $_POST['size'];
-      $price = $_POST['price'];
-      $image = 'uploads/' . basename($_FILES['image']['name']);
+  // Insertion du produit dans la base de données
+  $sql = "INSERT INTO products (name, brand, color, size, price, image) VALUES (?, ?, ?, ?, ?, ?)";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("ssssds", $name, $brand, $color, $size, $price, $image);
+  $stmt->execute();
 
-      $sql = "INSERT INTO products (name, brand, color, size, price, image) VALUES (?, ?, ?, ?, ?, ?)";
-      $stmt = $conn->prepare($sql);
-      $stmt->bind_param("ssssds", $name, $brand, $color, $size, $price, $image);
-      $stmt->execute();
-
-      header("Location: products.php");
-    } else {
-      echo "Extension du fichier non autorisée. Seules les extensions jpg, jpeg et png sont acceptées.";
-    }
-  } else {
-    echo "La taille du fichier est trop grande. La taille maximale autorisée est de 1 Mo.";
+  header("Location: products.php");
+  if (isset($_POST['delete'])) {
+    $id = $_POST['id'];
+    deleteProduct($id);
   }
-} else {
-  echo "Erreur lors de l'envoi du fichier.";
 }
