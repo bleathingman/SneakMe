@@ -22,12 +22,7 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <nav>
-        <a href="index.php">Dashboard</a>
-        <a href="products.php">Products</a>
-        <a href="users.php">Users</a>
-        <a href="logout.php">Logout</a>
-    </nav>
+    <?php require 'templates/header.php'; ?>
     <h1>Orders</h1>
     <table>
         <thead>

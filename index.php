@@ -19,12 +19,7 @@ if (!isset($_SESSION["user_id"])) {
 </head>
 
 <body>
-    <nav>
-        <a href="products.php">Products</a>
-        <a href="orders.php">Orders</a>
-        <a href="users.php">Users</a>
-        <a href="logout.php">Logout</a>
-    </nav>
+    <?php require 'templates/header.php'; ?>
     <h1>Welcome to the Sneakers E-commerce Dashboard</h1>
     <script src="assets/js/script.js"></script>
 </body>
