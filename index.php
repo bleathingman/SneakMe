@@ -22,11 +22,8 @@ if (!isset($_SESSION["user_id"])) {
 
 <body>
     <?php require 'templates/header.php'; ?>
-    <div class="container-fluid py-5">
-        <div class="row">
-            <main class="col-lg-12">
-                <h1>Dashboard SneakMe</h1>
-        </div>
+    <div class="container">
+        <h1>Dashboard SneakMe</h1>
     </div>
     <script src="assets/js/script.js"></script>
 </body>

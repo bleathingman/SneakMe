@@ -7,8 +7,7 @@ if (!isset($_SESSION["user_id"])) {
 	exit;
 }
 
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -17,96 +16,76 @@ $result = $conn->query($sql);
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Products</title>
+	<title>Gestion des produits</title>
 	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
-<body class="row">
-	<?php require 'templates/header.php'; ?>
-	<div class="container-fluid py-5">
-		<div class="row">
-			<main class="col-lg-12">
-				<div class="form">
-					<h1>Products</h1>
-					<!-- Add product form -->
-					<h2>Ajouter un produit</h2>
-					<?php if (isset($error)) : ?>
-						<p class="error"><?php echo $error; ?></p>
-					<?php endif; ?>
-					<?php if (isset($success)) : ?>
-						<p class="success"><?php echo $success; ?></p>
-					<?php endif; ?>
-					<form method="post" enctype="multipart/form-data" action="add_product.php">
-						<label>Nom :</label>
-						<input type="text" name="name" required>
-						<br>
-						<label>Marque :</label>
-						<input type="text" name="brand" required>
-						<br>
-						<label>Couleur :</label>
-						<input type="text" name="color" required>
-						<br>
-						<label>Taille :</label>
-						<input type="text" name="size" required>
-						<br>
-						<label>Prix :</label>
-						<input type="number" name="price" min="0" step="0.01" required>
-						<br>
-						<label>Image :</label>
-						<input type="text" name="image" required>
-						<br>
-						<button type="submit">Ajouter</button>
-					</form>
+<body>
+	<?php require "templates/header.php"; ?>
+	<div class="container">
+		<h1>Gestion des produits</h1>
 
-				</div>
-				<!-- Display products -->
-				<div>
-					<h2>Liste des produits</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Image</th>
-								<th>Marque</th>
-								<th>Nom du produit</th>
-								<th>Prix</th>
-								<th>Taille</th>
-								<th>Couleur</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php if ($result->num_rows > 0) : ?>
-								<?php while ($row = $result->fetch_assoc()) : ?>
-									<tr>
-										<td class="id_product"><?php echo $row["id"]; ?></td>
-										<td class="image_product"><img src="<?php echo $row['image']; ?>"></td>
-										<td class="brand_product"><?php echo $row["brand"]; ?></td>
-										<td class="name_product"><?php echo $row["product_name"]; ?></td>
-										<td class="price_product"><?php echo $row["price"]; ?> €</td>
-										<td class="size_product"><?php echo $row["size"]; ?></td>
-										<td class="color _product"><?php echo $row["color"]; ?></td>
-										<td>
-											<form action="" method="post">
-												<input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-												<button type="submit" name="delete">Supprimer</button>
-											</form>
-										</td>
-									</tr>
-								<?php endwhile; ?>
-							<?php else : ?>
-								<tr>
-									<td colspan="6">Aucun produit trouvé.</td>
-								</tr>
-							<?php endif; ?>
-						</tbody>
-					</table>
-				</div>
-			</main>
-		</div>
+		<!-- Formulaire de création de produit -->
+		<form class="form" action="gestion_produits/create_product.php" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="product_name">Nom du produit :</label>
+				<input type="text" id="product_name" name="product_name" required>
+				<label for="brand">Marque :</label>
+				<input type="text" id="brand" name="brand" required>
+				<label for="color">Couleur :</label>
+				<input type="text" id="color" name="color" required>
+				<label for="size">Taille :</label>
+				<input type="text" id="size" name="size" required>
+				<label for="price">Prix :</label>
+				<input type="number" id="price" name="price" step="0.01" min="0" required>
+				<label for="image">Image :</label>
+				<input type="file" id="image" name="image" accept="image/*">
+				<input class="btn btn-primary" type="submit" value="Ajouter un produit">
+			</div>
+		</form>
+
+		<!-- Tableau des produits -->
+		<table>
+			<thead>
+				<tr>
+					<!-- <th>Id</th> -->
+					<th>Image</th>
+					<th>Nom du produit</th>
+					<th>Marque</th>
+					<th>Couleur</th>
+					<th>Taille</th>
+					<th>Prix</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				// récupération des données de la table products
+				$result = $conn->query("SELECT * FROM products");
+				while ($row = $result->fetch_assoc()) {
+					echo "<tr>";
+					// echo "<td>" . $row["id"] . "</td>";
+					echo "<td><img src='gestion_produits/uploads/" . $row["image"] . "' alt='" . $row["product_name"] . "' width='100'></td>";
+					echo "<td>" . $row["product_name"] . "</td>";
+					echo "<td>" . $row["brand"] . "</td>";
+					echo "<td>" . $row["color"] . "</td>";
+					echo "<td>" . $row["size"] . "</td>";
+					echo "<td>" . $row["price"] . "</td>";
+					echo "<td>";
+					echo "<a href='gestion_produits/edit_product.php?id=" . $row["id"] . "'>Modifier</a> | ";
+					echo "<a href='gestion_produits/delete_product.php?id=" . $row["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer ce produit ?\")'>Supprimer</a>";
+					echo "</td>";
+					echo "</tr>";
+				}
+				?>
+			</tbody>
+		</table>
+		</main>
 	</div>
-
-	<script src="assets/js/script.js"></script>
 </body>
 
 </html>
