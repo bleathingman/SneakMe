@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once("config.php");
+$conn = connectDB();
+
 
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
@@ -17,6 +19,10 @@ if ($result->num_rows > 0) {
         $requests[] = $row;
     }
 }
+
+$conn->close();
+?>
+
 ?>
 
 <head>
