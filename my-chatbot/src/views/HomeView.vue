@@ -1,7 +1,8 @@
+
 <template>
 	<div class="home">
 		<div class="chat-container">
-			<div class="messages">
+			<div class="messages" ref="messagesContainer">
 				<ul class="message-list">
 					<li v-for="(message, index) in messages" :key="index" :class="message.sender">
 						<span v-html="message.text"></span>
@@ -37,16 +38,16 @@ export default {
 
 			if (this.userMessage.toLowerCase().startsWith("sneaker info")) {
 				const productName = this.userMessage.substring("sneaker info".length).trim();
-
 				try {
 					const response = await api.getSneakerByName(productName);
 					const sneaker = response.data;
-
+					console.log(sneaker)
+					
 					if (sneaker) {
 						botResponse = `<div>Informations sur la sneaker ${sneaker.product_name} :</div><br/>
-                           <div>Prix : ${sneaker.price} €</div>
-                           <div>Couleur : ${sneaker.color}</div>
-                           <div>Taille : ${sneaker.size}</div>`;
+						<div>Prix : ${sneaker.price} €</div>
+						<div>Couleur : ${sneaker.color}</div>
+						<div>Taille : ${sneaker.size}</div>`;
 					} else {
 						botResponse = `Désolé, aucune sneaker trouvée avec le nom "${productName}".`;
 					}
