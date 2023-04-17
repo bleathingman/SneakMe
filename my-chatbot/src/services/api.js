@@ -13,9 +13,16 @@ async function getSneakers() {
     const response = await apiClient.get('/getSneakers.php');
     return response;
 }
+
 // récupère les sneakers par le product_name
 async function getSneakerByName(productName) {
     const response = await apiClient.get(`/getSneakerByName.php?product_name=${productName}`);
+    return response;
+}
+
+// récupère les sneakers par leur taille
+async function getSneakersBySize(size) {
+    const response = await apiClient.post('/getSneakersBySize.php', { size });
     return response;
 }
 
@@ -26,4 +33,6 @@ export default {
     },
     getSneakers,
     getSneakerByName,
+    getSneakersBySize,
 };
+

@@ -63,16 +63,18 @@ input[type="text"] {
 }
 
 button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
+    font-size: 14px;
+    padding: 5px 10px;
+    background-color: #ebeae6;
+    border: 1px solid #7A9BBE;
+    color: #000000;
+    border-radius: 3px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #d3ffd3;
 }
 
 .message-time {
@@ -82,4 +84,47 @@ button:hover {
 
 .bot-messages div {
     margin-bottom: 4px;
+}
+
+.cart-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    z-index: 999;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+h3 {
+    text-align: center;
+}
+
+.commands-list {
+    position: absolute;
+    width: 30%;
+    height: auto;
+    margin: 0px 30px 30px 30px;
+    text-align: left;
+    background-color: #d3ffd3;
+}
+
+.commandes-dispo {
+    padding: 0;
+    margin: 30px;
+    list-style: none;
+}
+
+.commandes-dispo li {
+    padding-bottom: 10px;
+}
+
+.chat-container {
+    width: 70%;
 }
