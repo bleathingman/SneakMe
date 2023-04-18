@@ -27,4 +27,11 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.sneaker-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
 </style>
