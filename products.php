@@ -21,13 +21,16 @@ if (!isset($_SESSION["user_id"])) {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<style type="text/css">
+#scroll{height:100%;overflow:auto;width:100%}
+</style>
 </head>
 
 <body>
 	<?php require "templates/header.php"; ?>
 
 
-	<div class="container">
+	<div class="container" id="scroll">
 		<h1>Gestion des produits</h1>
 
 		<!-- Formulaire de création de produit -->

@@ -38,13 +38,15 @@ $conn->close();
             <h1>Requêtes ChatBot</h1>
 
             <!-- Formulaire pour ajouter une nouvelle requête -->
-            <form action="add_request.php" method="post">
+            <form class="form" action="add_request.php" method="post" enctype="multipart/form-data">
+			<div class="form-group">
                 <label for="user_message">Message de l'utilisateur :</label>
                 <input type="text" id="user_message" name="user_message" required>
                 <label for="bot_message">Message du chatbot :</label>
                 <input type="text" id="bot_message" name="bot_message" required>
-                <input type="submit" value="Ajouter la requête">
+                <input class="btn btn-xp" type="submit" value="Ajouter la requête">
             </form>
+</div>
 
             <!--Tableau pour afficher les requests existante pour le chat bot-->
             <table>
