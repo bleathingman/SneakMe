@@ -6,14 +6,26 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require_once("../config.php");
 
-$product_name = $_GET["product_name"];
+$conn = connectDB();
 
-$sql = "SELECT * FROM products WHERE product_name = :product_name";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(":product_name", $product_name);
-$stmt->execute();
+$product_name = $_GET['product_name'];
 
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$sql = "SELECT product_name FROM products = '$product_name'";
 
-header("Content-Type: application/json");
-echo json_encode($result);
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Récupérer les résultats
+    $sneaker = $result->fetch_assoc();
+
+    // Renvoyer les données au format JSON
+    header('Content-Type: application/json');
+    echo json_encode($sneaker);
+} else {
+    // Renvoyer un message d'erreur au format JSON
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Aucune sneaker trouvée avec le nom "' . $product_name . '".']);
+}
+
+
+$conn->close();
