@@ -3,7 +3,7 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">Credits</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
@@ -29,9 +29,9 @@ nav a.router-link-exact-active {
 }
 
 .sneaker-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-top: 1rem;
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 1rem;
 }
 </style>
