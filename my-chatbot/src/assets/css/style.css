@@ -1,10 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
+
 .chat-container {
-    max-width: 400px;
-    height: 600px;
+    font-family: "Open Sans";
+    max-width: 350px;
+    height: 500px;
     margin: 0 auto;
-    border: 1px solid #ccc;
     padding: 10px;
-    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: #222222;
+    border: 5px;
+    background-color: #ebeae6;
+ 
 }
 
 .messages {
@@ -25,17 +31,17 @@
 }
 
 .message-list .user {
-    background-color: #b7e6f5;
+    background-color: #222222;
     text-align: right;
     margin-left: auto;
 }
 
 .user {
     max-width: fit-content;
+    color: white;
 }
 
 .bot {
-    background-color: antiquewhite;
     text-align: left;
 }
 
@@ -66,15 +72,17 @@ button {
     font-size: 14px;
     padding: 5px 10px;
     background-color: #ebeae6;
-    border: 1px solid #7A9BBE;
+    border: 1px solid beige;
+    border-radius: 5px;
     color: #000000;
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-bottom: 30px;
 }
 
 button:hover {
-    background-color: #d3ffd3;
+    background-color: beige;
 }
 
 .message-time {
