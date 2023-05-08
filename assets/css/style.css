@@ -204,12 +204,14 @@ body {
     padding: 20px;
     border: 1px solid #7A9BBE;
     box-shadow: 0 0 5px #7A9BBE;
+    width: 50px;
 }
 
 .form-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
+    width: 50px;
 }
 
 .form-group>div {
@@ -229,6 +231,7 @@ body {
     padding: 2px 5px;
     font-size: 14px;
     border-radius: 3px;
+    width: 50px;
 }
 
 .form-group input[type="file"] {
@@ -236,8 +239,8 @@ body {
 }
 
 .form-group input[type="submit"] {
-    background-color: #E6E6FA;
-    border: 1px solid #7A9BBE;
+    background-color: beige;
+    border: 1px solid #25282C;
     padding: 4px 8px;
     font-size: 14px;
     color: #333;
