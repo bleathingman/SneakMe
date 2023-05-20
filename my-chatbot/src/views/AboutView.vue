@@ -6,6 +6,6 @@
   <br /><br />
   <p>
     Nous avons réalisé ce projet dans le but de répondre à la demande de
-    l'entreprise Sneak Me.
+    l'entreprise SneakMe.
   </p>
 </template>
