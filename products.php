@@ -7,6 +7,11 @@ if (!isset($_SESSION["user_id"])) {
 	header("Location: login.php");
 	exit;
 }
+
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
 
 <!DOCTYPE html>
@@ -22,8 +27,7 @@ if (!isset($_SESSION["user_id"])) {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<style type="text/css">
-#scroll{height:100%;overflow:auto;width:100%}
-</style>
+	</style>
 </head>
 
 <body>
@@ -86,16 +90,15 @@ if (!isset($_SESSION["user_id"])) {
 					$result = $conn->query("SELECT * FROM products");
 					while ($row = $result->fetch_assoc()) {
 						echo "<tr>";
-						// echo "<td>" . $row["id"] . "</td>";
-						echo "<td><img src='gestion_produits/uploads/" . $row["image"] . "' alt='" . $row["product_name"] . "' width='100'></td>";
-						echo "<td>" . $row["product_name"] . "</td>";
-						echo "<td>" . $row["brand"] . "</td>";
-						echo "<td>" . $row["color"] . "</td>";
-						echo "<td>" . $row["size"] . "</td>";
-						echo "<td>" . $row["price"] . "</td>";
+						echo "<td><img src='gestion_produits/uploads/" . htmlspecialchars($row["image"]) . "' alt='Image du produit " . htmlspecialchars($row["product_name"]) . "' width='100'></td>";
+						echo "<td>" . htmlspecialchars($row["product_name"]) . "</td>";
+						echo "<td>" . htmlspecialchars($row["brand"]) . "</td>";
+						echo "<td>" . htmlspecialchars($row["color"]) . "</td>";
+						echo "<td>" . htmlspecialchars($row["size"]) . "</td>";
+						echo "<td>" . htmlspecialchars($row["price"]) . "</td>";
 						echo "<td>";
-						echo "<a class='btn btn-edit' href='gestion_produits/edit_product.php?id=" . $row["id"] . "'>Modifier</a>";
-						echo "<a class='btn btn-delete' href='gestion_produits/delete_product.php?id=" . $row["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer ce produit ?\")'>Supprimer</a>";
+						echo "<a class='btn btn-edit' href='gestion_produits/edit_product.php?id=" . htmlspecialchars($row["id"]) . "'>Modifier</a>";
+						echo "<a class='btn btn-delete' href='gestion_produits/delete_product.php?id=" . htmlspecialchars($row["id"]) . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer ce produit ?\")'>Supprimer</a>";
 						echo "</td>";
 						echo "</tr>";
 					}

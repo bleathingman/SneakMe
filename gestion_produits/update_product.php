@@ -1,5 +1,6 @@
 <?php
-include "../config.php";
+require_once("../config.php");
+$conn = connectDB();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST["id"];

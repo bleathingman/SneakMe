@@ -1,5 +1,6 @@
 <?php
-include "../config.php";
+require_once("../config.php");
+$conn = connectDB();
 
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM products WHERE id = $id");
