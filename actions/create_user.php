@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST["id"];
     $username = $_POST["username"];
     $email = $_POST["email"];
-    $status = $_POST["user_statut"];
+    $status = $_POST["status"];
 
     // Insert user into the database
     $sql = "INSERT INTO users (id, username, email, status) VALUES ('$id', '$username', '$email', '$status')";
