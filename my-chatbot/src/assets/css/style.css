@@ -6,17 +6,12 @@
     height: 500px;
     margin: 0 auto;
     padding: 10px;
-    border-radius: 5px;
-    border: #222222;
-    border: 5px;
-    background-color: #ebeae6;
- 
+    background-color: beige;
 }
 
 .messages {
-    height: 530px;
+    height: 520px;
     overflow-y: auto;
-    margin-bottom: 20px;
 }
 
 .message-list {
@@ -31,7 +26,7 @@
 }
 
 .message-list .user {
-    background-color: #222222;
+    background-color: #8b6c42;
     text-align: right;
     margin-left: auto;
 }
@@ -47,13 +42,14 @@
 
 .input-container {
     display: flex;
-    border-top: 1px solid #ccc;
-    padding: 8px;
+    border-top: 1px solid #ffffccca;
+    padding: 5px;
 }
 
 .input-container input {
     flex-grow: 1;
     padding: 5px;
+    border-color: #8b6c42;
 }
 
 .input-container button {
@@ -62,27 +58,25 @@
 
 input[type="text"] {
     flex-grow: 1;
-    border: none;
     border-radius: 4px;
-    padding: 8px;
     margin-right: 8px;
+    border-color: #8b6c42;
 }
 
 button {
     font-size: 14px;
-    padding: 5px 10px;
-    background-color: #ebeae6;
-    border: 1px solid beige;
-    border-radius: 5px;
-    color: #000000;
-    border-radius: 3px;
+    background-color: #8b6c42;
+    color: white;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-bottom: 30px;
+    border: none;
 }
 
 button:hover {
-    background-color: beige;
+    background-color: white;
+    color: #000000;
+    border: #7b7b7b;
+    border-radius: 2px;
 }
 
 .message-time {
@@ -99,7 +93,7 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #ffffccca;
     border: 1px solid black;
     padding: 20px;
     z-index: 999;
@@ -108,6 +102,7 @@ button:hover {
 .content-wrapper {
     display: flex;
     flex-direction: row;
+    padding-top: 20px;
 }
 
 h3 {
@@ -120,7 +115,8 @@ h3 {
     height: auto;
     margin: 0px 30px 30px 30px;
     text-align: left;
-    background-color: #d3ffd3;
+    background-color: beige;
+    border-radius: 5%;
 }
 
 .commandes-dispo {
@@ -138,7 +134,7 @@ h3 {
 }
 
 .add-to-cart-btn {
-    background-color: #4caf50;
+    background-color: #ffffccca;
     border: none;
     color: white;
     padding: 8px 16px;
