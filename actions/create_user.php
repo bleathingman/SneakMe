@@ -1,20 +1,23 @@
 <?php
-$post_data = json_decode(file_get_contents("php://input"), true);
-$username = $post_data["username"];
-$password = password_hash($post_data["password"], PASSWORD_DEFAULT);
-$email = $post_data["email"];
+require_once("../config.php");
+$conn = connectDB();
 
-$sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $username, $password, $email);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get form data
+    $id = $_POST["id"];
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $status = $_POST["status"];
 
-if ($stmt->execute()) {
-    http_response_code(201);
-    echo json_encode(["message" => "User created successfully", "user_id" => $conn->insert_id]);
-} else {
-    http_response_code(500);
-    echo json_encode(["error" => "Failed to create user"]);
+    // Insert user into the database
+    $sql = "INSERT INTO users (id, username, email, status) VALUES ('$id', '$username', '$email', '$status')";
+    if ($conn->query($sql) === TRUE) {
+        header("Location: ../users.php");
+        exit;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 
-$stmt->close();
 $conn->close();
+?>

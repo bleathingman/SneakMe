@@ -4,7 +4,8 @@ header("Content-Type: application/json");
 $request_method = $_SERVER["REQUEST_METHOD"];
 $request_uri = $_SERVER["REQUEST_URI"];
 
-include("config.php");
+require_once("../config.php");
+$conn = connectDB();
 
 switch ($request_method) {
     case "GET":
