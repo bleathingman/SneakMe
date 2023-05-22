@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <button @click="showCart = true">Afficher le panier</button>
+    <button class="button-panier" @click="showCart = true">Afficher le panier</button>
     <div v-if="showCart" class="cart-popup">
       <button @click="showCart = false">Fermer</button>
       <ul>
@@ -48,7 +48,7 @@
         </div>
         <div class="input-container">
           <input type="text" v-model="userMessage" @keyup.enter="sendMessage" />
-          <button @click="sendMessage">Envoyer</button>
+          <button class="button-send" @click="sendMessage">Envoyer</button>
         </div>
       </div>
     </div>
