@@ -8,14 +8,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $status = $_POST["status"];
+    $password = $_POST["password"];
 
     // Insert user into the database
-    $sql = "INSERT INTO users (id, username, email, status) VALUES ('$id', '$username', '$email', '$status')";
+    $sql = "INSERT INTO users (id, username, email, status, password) VALUES ('$id', '$username', '$email', '$status', '$password')";
     if ($conn->query($sql) === TRUE) {
         header("Location: ../users.php");
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+if (isset($_GET['delete_id'])) {
+    $deleteId = $_GET['delete_id'];
+    $sql = "DELETE FROM users WHERE id = '$deleteId'";
+    if ($conn->query($sql) === TRUE) {
+        header("Location: ../users.php");
+        exit;
+    } else {
+        echo "Error deleting user: " . $conn->error;
     }
 }
 
@@ -41,7 +53,7 @@ $conn->close();
 </head>
 
 <body>
-<?php require 'templates/header.php'; ?>
+    <?php require 'templates/header.php'; ?>
     <div class="container-fluid py-5">
         <div class="container">
             <h1>Utilisateurs</h1>
@@ -55,6 +67,8 @@ $conn->close();
                     <input type="text" id="username" name="username" required>
                     <label for="email">Email :</label>
                     <input type="email" id="email" name="email" required>
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
 
                     <!-- Bouton déroulant pour choisir le statut -->
                     <label for="status">Statut :</label>
@@ -69,28 +83,33 @@ $conn->close();
 
             <!-- Tableau pour afficher les utilisateurs existants -->
             <div class="scrollable">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nom d'utilisateur</th>
-                        <th>Email</th>
-                        <th>Statut</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($users as $user) {
-                        echo "<tr>";
-                        echo "<td>" . $user["id"] . "</td>";
-                        echo "<td>" . $user["username"] . "</td>";
-                        echo "<td>" . $user["email"] . "</td>";
-                        echo "<td>" . $user["status"] . "</td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom d'utilisateur</th>
+                            <th>Email</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    <?php
+    foreach ($users as $user) {
+        echo "<tr>";
+        echo "<td>" . $user["id"] . "</td>";
+        echo "<td>" . $user["username"] . "</td>";
+        echo "<td>" . $user["email"] . "</td>";
+        echo "<td>" . $user["status"] . "</td>";
+        echo "<td>";
+        echo "<a class='btn btn-delete' href='?delete_user=" . $user["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet utilisateur ?\")'>Supprimer</a>";
+        echo "</td>";
+        echo "</tr>";
+    }
+    ?>
+</tbody>
+                </table>
+            </div>
         </div>
     </div>
 </body>
