@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
 
 .chat-container {
-    font-family: "Open Sans";
-    max-width: 350px;
-    height: 500px;
+    width: 350px;
     margin: 0 auto;
     padding: 10px;
+    border-radius: 3%;
     background-color: beige;
+    font-family: "Open Sans";
 }
 
 .messages {
@@ -79,11 +79,6 @@ button:hover {
     border-radius: 2px;
 }
 
-.message-time {
-    font-size: 12px;
-    color: #888;
-}
-
 .bot-messages div {
     margin-bottom: 4px;
 }
@@ -116,7 +111,7 @@ h3 {
     margin: 0px 30px 30px 30px;
     text-align: left;
     background-color: beige;
-    border-radius: 5%;
+    border-radius: 3%;
 }
 
 .commandes-dispo {
@@ -127,10 +122,6 @@ h3 {
 
 .commandes-dispo li {
     padding-bottom: 10px;
-}
-
-.chat-container {
-    width: 70%;
 }
 
 .add-to-cart-btn {
@@ -144,5 +135,4 @@ h3 {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-  }
-  
+}

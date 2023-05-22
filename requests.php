@@ -54,7 +54,6 @@ $conn->close();
                             <th>ID</th>
                             <th>Message de l'utilisateur</th>
                             <th>Message du chatbot</th>
-                            <th>Date de création</th>
                         </tr>
                     </thead>
                     <tbody>

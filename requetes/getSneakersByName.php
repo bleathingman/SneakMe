@@ -10,7 +10,7 @@ $conn = connectDB();
 
 $product_name = $_GET['product_name'];
 
-$sql = "SELECT product_name FROM products = '$product_name'";
+$sql = "SELECT * FROM products WHERE product_name = '$product_name'";
 
 $result = $conn->query($sql);
 

@@ -33,38 +33,16 @@
       <div class="chat-container">
         <div class="messages" ref="messagesContainer">
           <ul class="message-list">
-            <li
-              v-for="(message, index) in messages"
-              :key="index"
-              :class="message.sender"
-            >
-              <bot-response
-                v-if="message.sender === 'bot'"
-                :type="message.type"
-                :data="message.data"
-                @add-to-cart="addToCart"
-              ></bot-response>
-              <component
-                :is="'div'"
-                v-html="message.text"
-                :class="message.sender"
-                v-on="this.$listeners"
-              >
+            <li v-for="(message, index) in messages" :key="index" :class="message.sender">
+              <bot-response v-if="message.sender === 'bot'" :type="message.type" :data="message.data"
+                @add-to-cart="addToCart"></bot-response>
+              <component :is="'div'" v-html="message.text" :class="message.sender" v-on="this.$listeners">
               </component>
-              <sneaker-info
-                v-if="message.sneaker"
-                :sneaker="message.sneaker"
-                @add-to-cart="addToCart"
-              ></sneaker-info>
+              <sneaker-info v-if="message.sneaker" :sneaker="message.sneaker" @add-to-cart="addToCart"></sneaker-info>
               <!-- Ajoutez le bouton "Ajouter au panier" pour chaque sneaker -->
-              <button
-                v-if="message.sneakerId"
-                @click="addToCart(message.sneakerId)"
-                class="add-to-cart-btn"
-              >
+              <button v-if="message.sneakerId" @click="addToCart(message.sneakerId)" class="add-to-cart-btn">
                 Ajouter au panier
               </button>
-              <div class="message-time">{{ message.timestamp }}</div>
             </li>
           </ul>
         </div>
@@ -148,9 +126,8 @@ export default {
               sneakers.forEach((sneaker, index) => {
                 this.messages.push({
                   sender: 'bot',
-                  text: `${index + 1}. ${sneaker.product_name} - ${
-                    sneaker.price
-                  } €`,
+                  text: `${index + 1}. ${sneaker.product_name} - ${sneaker.price
+                    } €`,
                   imageUrl: sneaker.image_url,
                   sneakerId: sneaker.id, // Ajoutez l'ID de la sneaker pour pouvoir l'ajouter au panier
                 });
