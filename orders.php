@@ -32,7 +32,7 @@ $result = $conn->query($sql);
                     <th>ID</th>
                     <th>Utilisateur ID</th>
                     <th>Produit ID</th>
-                    <th>Quantité</th>
+                    <th>Quantitée</th>
                     <th>Prix Total</th>
                     <th>Date de Commandes</th>
                 </tr>

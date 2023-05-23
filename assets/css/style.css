@@ -20,18 +20,18 @@ body {
     overflow: auto;
 }
 
+.logo {
+    height: auto;
+}
+
 .sidebar {
-    width: 200px;
-    top: 0;
-    left: 0;
     background-color: #0033cc8f;
     overflow-x: hidden;
-    padding-top: 20px;
     color: #000000;
 }
 
 .sidebar a {
-    display: block;
+    display: flex;
     padding: 10px;
     text-decoration: none;
     color: #ffffff;
@@ -188,12 +188,36 @@ img {
 
 
 .scrollable {
-    height: 500px;
+    max-height: 500px;
     overflow-y: scroll;
 }
 
 /* Styles pour le formulaire */
 .form-product {
+    color: #fff;
+    background-color: #0033cc8f;
+    padding: 20px;
+    border: 1px solid #808080;
+    box-shadow: 0 0 5px #ffffcc;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.form-user {
+    color: #fff;
+    background-color: #0033cc8f;
+    padding: 20px;
+    border: 1px solid #808080;
+    box-shadow: 0 0 5px #ffffcc;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.form-request {
     color: #fff;
     background-color: #0033cc8f;
     padding: 20px;

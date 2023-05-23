@@ -48,54 +48,51 @@ $conn->close();
 <html lang="en">
 
 <head>
-    <!-- Les balises meta, title, et autres... -->
+    <title>Requêtes ChatBot</title>
 </head>
 
 <body>
     <?php require 'templates/header.php'; ?>
-    <div class="container-fluid py-5">
-        <div class="container" id="scroll">
-            <h1>Requêtes ChatBot</h1>
-
-            <!-- Formulaire pour ajouter une nouvelle requête -->
-            <form class="form" action="create_request.php" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="user_message">Message de l'utilisateur :</label>
-                    <input type="text" id="user_message" name="user_message" required>
-                    <label for="bot_message">Message du chatbot :</label>
-                    <input type="text" id="bot_message" name="bot_message" required>
-                </div>
-                <input class="btn btn-add" type="submit" value="Ajouter la requête">
-            </form>
-
-            <!--Tableau pour afficher les requests existantes pour le chatbot-->
-            <div class="scrollable">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Message de l'utilisateur</th>
-                            <th>Message du chatbot</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($requests as $request) {
-                            echo "<tr>";
-                            echo "<td>" . $request["id"] . "</td>";
-                            echo "<td>" . $request["user_message"] . "</td>";
-                            echo "<td>" . $request["bot_message"] . "</td>";
-                            echo "<td>";
-                            echo "<a class='btn btn-edit' href='edit_request.php?id=" . $request["id"] . "' onclick='openEditModal(event)'>Modifier</a>";
-                            echo "<a class='btn btn-delete' href='?delete_id=" . $request["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cette requête ?\")'>Supprimer</a>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
+    <div class="container" id="scroll">
+        <h1>Requêtes ChatBot</h1>
+        <!-- Formulaire pour ajouter une nouvelle requête -->
+        <form class="form-request" action="create_request.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="user_message">Message de l'utilisateur :</label>
+                <input type="text" id="user_message" name="user_message" required>
+                <label for="bot_message">Message du chatbot :</label>
+                <input type="text" id="bot_message" name="bot_message" required>
             </div>
+            <input class="btn btn-add" type="submit" value="Ajouter la requête">
+        </form>
+        <br>
+        <!--Tableau pour afficher les requests existantes pour le chatbot-->
+        <div class="scrollable">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Message de l'utilisateur</th>
+                        <th>Message du chatbot</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($requests as $request) {
+                        echo "<tr>";
+                        echo "<td>" . $request["id"] . "</td>";
+                        echo "<td>" . $request["user_message"] . "</td>";
+                        echo "<td>" . $request["bot_message"] . "</td>";
+                        echo "<td>";
+                        echo "<a class='btn btn-edit' href='edit_request.php?id=" . $request["id"] . "' onclick='openEditModal(event)'>Modifier</a>";
+                        echo "<a class='btn btn-delete' href='?delete_id=" . $request["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cette requête ?\")'>Supprimer</a>";
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
