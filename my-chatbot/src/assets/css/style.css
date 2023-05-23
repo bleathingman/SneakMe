@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
 
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .chat-container {
     width: 350px;
     margin: 0 auto;
@@ -7,6 +13,13 @@
     border-radius: 3%;
     background-color: #0033cc8f;
     font-family: "Open Sans";
+}
+
+.logo {
+    position: absolute;
+    height: auto;
+    width: 100px;
+    left: 0;
 }
 
 .messages {
