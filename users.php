@@ -31,17 +31,6 @@ if (isset($_GET['delete_id']) && !empty($_GET['delete_id'])) {
     }
 }
 
-if (isset($_GET['delete_id'])) {
-    $deleteId = $_GET['delete_id'];
-    $sql = "DELETE FROM users WHERE id = '$deleteId'";
-    if ($conn->query($sql) === TRUE) {
-        header("Location: $_SERVER[PHP_SELF]");
-        exit;
-    } else {
-        echo "Error deleting user: " . $conn->error;
-    }
-}
-
 $sql = "SELECT * FROM users";
 $result = $conn->query($sql);
 
@@ -82,49 +71,16 @@ $conn->close();
                 <label for="password">Mot de passe :</label>
                 <input type="password" id="password" name="password" required>
 
-                    <!-- Bouton déroulant pour choisir le statut -->
-                    <label for="status">Statut :</label>
-                    <select id="status" name="status">
-                        <option value="admin">admin</option>
-                        <option value="user">user</option>
-                    </select>
-                </div>
-                <input class="btn btn-add" type="submit" value="Ajouter un utilisateur">
-            </form>
-
-            <!-- Tableau pour afficher les utilisateurs existants -->
-            <div class="scrollable">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nom d'utilisateur</th>
-                            <th>Email</th>
-                            <th>Statut</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($users as $user) {
-                            echo "<tr>";
-                            echo "<td>" . $user["id"] . "</td>";
-                            echo "<td>" . $user["username"] . "</td>";
-                            echo "<td>" . $user["email"] . "</td>";
-                            echo "<td>" . $user["status"] . "</td>";
-                            echo "<td>";
-                            echo "<a class='btn btn-edit' href='actions/edit_user.php?id=" . $user["id"] . "' onclick='openEditModal(event)'>Modifier</a>";
-                            echo "<a class='btn btn-delete' href='?delete_id=" . $user["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet utilisateur ?\")'>Supprimer</a>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                <!-- Bouton déroulant pour choisir le statut -->
+                <label for="status">Statut :</label>
+                <select id="status" name="status">
+                    <option value="admin">admin</option>
+                    <option value="user">user</option>
+                </select>
             </div>
             <input class="btn btn-add" type="submit" value="Ajouter un utilisateur">
         </form>
-        <br>
+
         <!-- Tableau pour afficher les utilisateurs existants -->
         <div class="scrollable">
             <table>
@@ -146,6 +102,7 @@ $conn->close();
                         echo "<td>" . $user["email"] . "</td>";
                         echo "<td>" . $user["status"] . "</td>";
                         echo "<td>";
+                        echo "<a class='btn btn-edit' href='actions/edit_user.php?id=" . $user["id"] . "' onclick='openEditModal(event)'>Modifier</a>";
                         echo "<a class='btn btn-delete' href='?delete_id=" . $user["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet utilisateur ?\")'>Supprimer</a>";
                         echo "</td>";
                         echo "</tr>";
@@ -154,6 +111,7 @@ $conn->close();
                 </tbody>
             </table>
         </div>
+        <input class="btn btn-add" type="submit" value="Ajouter un utilisateur">
     </div>
 </body>
 
