@@ -20,11 +20,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+if (isset($_GET['delete_id']) && !empty($_GET['delete_id'])) {
+    $deleteId = $_GET['delete_id'];
+$sql = "DELETE FROM users WHERE id = '$deleteId'";
+if ($conn->query($sql) === TRUE) {
+    header("Location: $_SERVER[PHP_SELF]");
+    exit;
+} else {
+    echo "Error deleting user: " . $conn->error;
+}
+}
+
 if (isset($_GET['delete_id'])) {
     $deleteId = $_GET['delete_id'];
     $sql = "DELETE FROM users WHERE id = '$deleteId'";
     if ($conn->query($sql) === TRUE) {
-        header("Location: ../users.php");
+        header("Location: $_SERVER[PHP_SELF]");
         exit;
     } else {
         echo "Error deleting user: " . $conn->error;
@@ -102,7 +113,7 @@ $conn->close();
         echo "<td>" . $user["email"] . "</td>";
         echo "<td>" . $user["status"] . "</td>";
         echo "<td>";
-        echo "<a class='btn btn-delete' href='?delete_user=" . $user["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet utilisateur ?\")'>Supprimer</a>";
+        echo "<a class='btn btn-delete' href='?delete_id=" . $user["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet utilisateur ?\")'>Supprimer</a>";
         echo "</td>";
         echo "</tr>";
     }
