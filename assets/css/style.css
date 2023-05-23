@@ -277,7 +277,7 @@ img {
     background-color: #ffffcc;
     text-decoration: none;
     font-size: 14px;
-    color: #333;
+    color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -305,15 +305,9 @@ img {
     background-color: #0033cc;
     cursor: pointer;
     border-radius: 3px;
-    box-shadow: inset 0 0 3px #7A9BBE;
     transition: background-color 0.3s;
 }
 
 .btn-add:hover {
     background-color: #0033cc8f;
-}
-
-.btn-add:focus {
-    outline: none;
-    border-color: #25282C;
 }
