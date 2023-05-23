@@ -88,7 +88,7 @@ $conn->close();
                         <option value="user">user</option>
                     </select>
                 </div>
-                <input class="btn-add" type="submit" value="Ajouter un utilisateur">
+                <input class="btn btn-add" type="submit" value="Ajouter un utilisateur">
             </form>
 
             <!-- Tableau pour afficher les utilisateurs existants -->

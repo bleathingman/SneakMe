@@ -10,13 +10,13 @@ if (!isset($_SESSION["user_id"])) {
 
 if (isset($_GET['delete_id']) && !empty($_GET['delete_id'])) {
     $deleteId = $_GET['delete_id'];
-$sql = "DELETE FROM request_chat WHERE id = '$deleteId'";
-if ($conn->query($sql) === TRUE) {
-    header("Location: $_SERVER[PHP_SELF]");
-    exit;
-} else {
-    echo "Error deleting user: " . $conn->error;
-}
+    $sql = "DELETE FROM request_chat WHERE id = '$deleteId'";
+    if ($conn->query($sql) === TRUE) {
+        header("Location: $_SERVER[PHP_SELF]");
+        exit;
+    } else {
+        echo "Error deleting user: " . $conn->error;
+    }
 }
 
 if (isset($_GET['delete_id'])) {
@@ -64,7 +64,7 @@ $conn->close();
                     <input type="text" id="user_message" name="user_message" required>
                     <label for="bot_message">Message du chatbot :</label>
                     <input type="text" id="bot_message" name="bot_message" required>
-                    <input class="btn-add" type="submit" value="Ajouter la requête">
+                    <input class="btn btn-add" type="submit" value="Ajouter la requête">
                 </div>
             </form>
 
@@ -89,7 +89,7 @@ $conn->close();
                             echo "<td>";
                             echo "<a class='btn btn-delete' href='?delete_id=" . $request["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cette requête ?\")'>Supprimer</a>";
                             echo "<a class='btn btn-edit' href='edit_request.php?id=" . $request["id"] . "' onclick='openEditModal(event)'>Modifier</a>";
-echo "</td>";
+                            echo "</td>";
                             echo "</tr>";
                         }
                         ?>
