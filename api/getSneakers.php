@@ -8,7 +8,7 @@ require_once("../config.php");
 
 $conn = connectDB();
 
-$sql = "SELECT product_name, price, image FROM products LIMIT 5";
+$sql = "SELECT product_name, price, id FROM products LIMIT 100";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
