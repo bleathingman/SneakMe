@@ -10,6 +10,11 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.container {
+    height: 100%;
+    overflow: auto;
+}
+
 .sidebar {
     height: 100%;
     width: 200px;
