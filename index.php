@@ -10,12 +10,13 @@ if (!isset($_SESSION["user_id"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="shortcut icon" href="sneakme_favicon.ico" />
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,7 +24,6 @@ if (!isset($_SESSION["user_id"])) {
 </head>
 
 <body>
-    <!-- TODO add more graph -->
     <?php require 'templates/header.php'; ?>
     <div class="container">
         <h1>Dashboard SneakMe</h1>
@@ -69,7 +69,6 @@ if (!isset($_SESSION["user_id"])) {
         "#9ccc65",
         "#ff9800"
     ];
-
     new Chart("myChart", {
         type: "pie",
         data: {
