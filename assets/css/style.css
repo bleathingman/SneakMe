@@ -196,7 +196,7 @@ body {
 .scrollable {
     height: 500px;
     overflow-y: scroll;
-    margin-bottom: 20px;
+    padding: 20px;
 }
 
 /* Styles pour le formulaire */
