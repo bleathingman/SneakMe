@@ -112,6 +112,7 @@ $conn->close();
                             echo "<td>" . $user["email"] . "</td>";
                             echo "<td>" . $user["status"] . "</td>";
                             echo "<td>";
+                            echo "<a class='btn btn-edit' href='actions/edit_user.php?id=" . $user["id"] . "' onclick='openEditModal(event)'>Modifier</a>";
                             echo "<a class='btn btn-delete' href='?delete_id=" . $user["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cet utilisateur ?\")'>Supprimer</a>";
                             echo "</td>";
                             echo "</tr>";

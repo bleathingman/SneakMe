@@ -87,7 +87,7 @@ $conn->close();
                             echo "<td>" . $request["user_message"] . "</td>";
                             echo "<td>" . $request["bot_message"] . "</td>";
                             echo "<td>";
-                            echo "<a class='btn btn-edit' href='edit_request.php?id=" . $request["id"] . "' onclick='openEditModal(event)'>Modifier</a>";
+                            echo "<a class='btn btn-edit' href='actions/edit_request.php?id=" . $request["id"] . "' onclick='openEditModal(event)'>Modifier</a>";
                             echo "<a class='btn btn-delete' href='?delete_id=" . $request["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cette requête ?\")'>Supprimer</a>";
                             echo "</td>";
                             echo "</tr>";
