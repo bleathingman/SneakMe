@@ -1,6 +1,14 @@
 /* style.css */
 
-body {}
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+    font-family: Arial, sans-serif;
+}
 
 .sidebar {
     height: 100%;
@@ -100,17 +108,6 @@ img {
     width: 200px;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: #f6f6f6;
-    font-family: Arial, sans-serif;
-}
-
 .graphs {
     display: flex;
     gap: 20px;
@@ -196,7 +193,7 @@ body {
 .scrollable {
     height: 500px;
     overflow-y: scroll;
-    margin-bottom: 20px;
+    padding: 20px;
 }
 
 /* Styles pour le formulaire */
@@ -206,20 +203,21 @@ body {
     padding: 20px;
     border: 1px solid grey;
     box-shadow: 0 0 5px #ffffcc;
-    width: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .form-group {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes avec largeur flexible */
     grid-gap: 20px;
-    width: 50px;
 }
 
 .form-group>div {
     display: flex;
     flex-direction: column;
-    width: 50px;
 }
 
 .form-group label {
@@ -231,31 +229,26 @@ body {
 .form-group input[type="file"] {
     background-color: white;
     border: 1px solid #ffffcc;
-    padding: 2px 5px;
+    padding: 8px 12px; /* Augmenter le padding pour un meilleur espacement */
     font-size: 14px;
     border-radius: 3px;
-    width: 50px;
+    width: 100%; /* Le champ prend tout l'espace disponible */
 }
 
 .form-group input[type="file"] {
-    padding: 2px 0;
+    padding: 8px 0;
 }
 
 .form-group input[type="submit"] {
     background-color: beige;
     border: 1px solid #25282C;
-    padding: 4px 8px;
+    padding: 8px 16px; /* Augmenter le padding pour un meilleur espacement */
     font-size: 14px;
     color: #333;
     cursor: pointer;
     border-radius: 3px;
     box-shadow: inset 0 0 3px #7A9BBE;
     transition: background-color 0.3s;
-}
-
-.form-group input[type="submit"]:hover {
-    background-color: #ffffcc;
-    color: #000000;
 }
 
 .btn-xp {
@@ -276,9 +269,6 @@ body {
     background-color: #ffffcc;
     color: #000000;
 }
-
-
-
 
 /* Styles pour le bouton Modifier et Supprimer un produit */
 
