@@ -4,13 +4,13 @@ $conn = connectDB();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
-    $id = $_POST["id"];
     $username = $_POST["username"];
     $email = $_POST["email"];
     $status = $_POST["status"];
+    $password = $_POST["password"];
 
     // Insert user into the database
-    $sql = "INSERT INTO users (id, username, email, status) VALUES ('$id', '$username', '$email', '$status')";
+    $sql = "INSERT INTO users (username, email, status, password) VALUES ('$username', '$email', '$status', '$password')";
     if ($conn->query($sql) === TRUE) {
         header("Location: ../users.php");
         exit;

@@ -62,8 +62,6 @@ $conn->close();
         <!-- Formulaire pour ajouter un nouvel utilisateur -->
         <form class="form-user" action="actions/create_user.php" method="post">
             <div class="form-group">
-                <label for="id">ID :</label>
-                <input type="text" id="id" name="id" required>
                 <label for="username">Nom d'utilisateur :</label>
                 <input type="text" id="username" name="username" required>
                 <label for="email">Email :</label>
@@ -86,7 +84,6 @@ $conn->close();
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nom d'utilisateur</th>
                         <th>Email</th>
                         <th>Statut</th>
@@ -97,7 +94,6 @@ $conn->close();
                     <?php
                     foreach ($users as $user) {
                         echo "<tr>";
-                        echo "<td>" . $user["id"] . "</td>";
                         echo "<td>" . $user["username"] . "</td>";
                         echo "<td>" . $user["email"] . "</td>";
                         echo "<td>" . $user["status"] . "</td>";
