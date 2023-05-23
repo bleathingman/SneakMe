@@ -21,8 +21,6 @@ error_reporting(E_ALL);
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Gestion des produits</title>
-	<link rel="stylesheet" href="assets/css/style.css">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -38,7 +36,7 @@ error_reporting(E_ALL);
 		<h1>Gestion des produits</h1>
 
 		<!-- Formulaire de création de produit -->
-		<form class="form" action="gestion_produits/create_product.php" method="post" enctype="multipart/form-data">
+		<form class="form-product" action="gestion_produits/create_product.php" method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<div>
 					<label for="product_name">Nom du produit :</label>
@@ -65,7 +63,7 @@ error_reporting(E_ALL);
 					<input type="file" id="image" name="image" accept="image/*">
 				</div>
 			</div>
-			<input class="btn btn-add" type="submit" value="Ajouter un produit">
+			<button class="btn btn-add" type="submit">Ajouter un produit</button>
 		</form>
 		<br>
 
