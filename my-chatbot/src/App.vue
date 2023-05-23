@@ -25,7 +25,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #8b6c42;
+  color: #0033cc;
 }
 
 .sneaker-image {
