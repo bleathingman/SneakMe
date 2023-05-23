@@ -4,8 +4,8 @@
       <div class="commands-list">
         <h3>Commandes disponibles :</h3>
         <ul class="commandes-dispo">
-          <li v-for="command in commands" :key="command.command">
-            <strong>{{ command.command }}</strong> - {{ command.description }}
+          <li class="commands-in-list" v-for="command in commands" :key="command.bot_message">
+            <strong>{{ command.bot_message }}</strong> - {{ command.description }}
           </li>
         </ul>
       </div>
@@ -63,9 +63,14 @@ export default {
     async loadCommands() {
       try {
         const response = await api.getCommands();
-        this.commands = response.data;
+        // Vérifiez si la réponse contient des commandes
+        if (response.data.length > 0) {
+          this.commands = response.data; // Utilisez directement le tableau retourné par l'API
+        } else {
+          console.log('Aucune commande disponible.');
+        }
       } catch (error) {
-        console.error('Error fetching commands:', error);
+        console.error('Erreur lors de la récupération des commandes :', error);
       }
     },
     async sendMessage() {

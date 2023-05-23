@@ -178,6 +178,10 @@ h3, h4 {
     padding-bottom: 10px;
 }
 
+.commands-in-list {
+    padding-bottom: 10px;
+}
+
 .cart-list {
     position: relative;
     width: 30%;

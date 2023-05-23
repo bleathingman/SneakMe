@@ -258,6 +258,18 @@ img {
     margin: 0 auto;
 }
 
+.form-edit-request {
+    color: #fff;
+    background-color: #0033cc8f;
+    padding: 20px;
+    border: 1px solid #808080;
+    box-shadow: 0 0 5px #ffffcc;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
 .form-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

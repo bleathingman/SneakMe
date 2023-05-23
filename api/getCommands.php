@@ -15,13 +15,14 @@ function getCommands()
     $commands = array();
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            array_push($commands, $row['bot_message']); // On pousse uniquement la réponse du bot dans le tableau
+            array_push($commands, $row); // Ajouter toute la ligne, pas seulement bot_message
         }
     }
     $conn->close();
 
     return $commands;
 }
+
 
 // Vérifiez la méthode de requête et les paramètres
 $method = $_SERVER['REQUEST_METHOD'];
