@@ -28,6 +28,7 @@
       </div>
       <div class="cart-list">
         <h3>Mon panier :</h3>
+        <h4>Total : {{ totalAmount.toFixed(2) }} €</h4>
         <ul class="cart-dispo">
           <li class="sneaker-in-cart" v-for="(product, index) in cartProducts" :key="product.id">
             <strong>{{ product.product_name }}</strong> - {{ product.price }} €
@@ -134,6 +135,11 @@ export default {
   computed: {
     cartProducts() {
       return this.cart;
+    },
+    totalAmount() {
+      return this.cart.reduce((total, product) => {
+        return total + parseFloat(product.price);
+      }, 0);
     }
   },
   components: {
