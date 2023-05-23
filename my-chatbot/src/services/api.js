@@ -46,6 +46,7 @@ async function getChatBotCommand(command) {
   return response;
 }
 
+// récupère les commands réalisable et stocker
 async function getCommands() {
   const response = await apiClient.get('/getCommands.php');
   return response;
