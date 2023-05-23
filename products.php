@@ -65,7 +65,7 @@ error_reporting(E_ALL);
 					<input type="file" id="image" name="image" accept="image/*">
 				</div>
 			</div>
-			<input class="btn btn-xp" type="submit" value="Ajouter un produit">
+			<input class="btn-add" type="submit" value="Ajouter un produit">
 		</form>
 		<br>
 
