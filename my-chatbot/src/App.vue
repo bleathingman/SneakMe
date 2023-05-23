@@ -1,4 +1,5 @@
 <template>
+  <img class="logo" src="../src/assets/logo/sneakme_favicon.svg" alt="" />
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">Credits</router-link>
