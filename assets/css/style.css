@@ -1,6 +1,14 @@
 /* style.css */
 
-body {}
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+    font-family: Arial, sans-serif;
+}
 
 .sidebar {
     height: 100%;
@@ -98,17 +106,6 @@ table tbody tr:nth-child(odd) {
 
 img {
     width: 200px;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: #f6f6f6;
-    font-family: Arial, sans-serif;
 }
 
 .graphs {
