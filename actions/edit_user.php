@@ -19,7 +19,7 @@ $row = $result->fetch_assoc();
     <div class="container">
         <h1>Modifier l'utilisateur</h1>
 
-        <form class="form" action="update_user.php" method="post" enctype="multipart/form-data">
+        <form class="form-edit-users" action="update_user.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
             <div class="form-group">
                 <label for="username">Message de l'utilisateur :</label>
@@ -35,7 +35,8 @@ $row = $result->fetch_assoc();
         </form>
 
     </div>
-
+    
 </body>
+
 
 </html>

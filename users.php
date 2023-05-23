@@ -78,7 +78,7 @@ $conn->close();
             </div>
             <input class="btn btn-add" type="submit" value="Ajouter un utilisateur">
         </form>
-
+        <br>
         <!-- Tableau pour afficher les utilisateurs existants -->
         <div class="scrollable">
             <table>

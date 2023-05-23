@@ -28,7 +28,7 @@ $row = $result->fetch_assoc();
                 <label for="bot_message">Message du chatbot :</label>
                 <input type="text" id="bot_message" name="bot_message" value="<?php echo $row['bot_message']; ?>" required>
             </div>
-            <input class="btn btn-success" type="submit" value="Mettre à jour">
+            <input class="btn-success" type="submit" value="Mettre à jour">
         </form>
 
     </div>
