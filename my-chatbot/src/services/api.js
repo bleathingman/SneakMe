@@ -16,22 +16,27 @@ async function getSneakers() {
 
 // récupère les sneakers par le product_name
 async function getSneakerByName(productName) {
+  console.log(productName);
   const response = await apiClient.get(
-    `/getSneakerByName.php?product_name=${productName}`
+    `/getSneakersbyName.php?critere=product_name&value=${encodeURIComponent(productName)}`
   );
   return response;
 }
 
+
 // récupère les sneakers par leur taille
 async function getSneakersBySize(size) {
-  const response = await apiClient.post('/getSneakersBySize.php', { size });
+  const response = await getProductsByCritere('size', size);
+  return response;
+}
+
+// Récupère des produits par un certain critère
+async function getProductsByCritere(critere, value) {
+  const response = await apiClient.get(`/api.php?critere=${critere}&value=${value}`);
   return response;
 }
 
 export default {
-  getProductsByCritere(critere, value) {
-    return apiClient.get(`/api.php?critere=${critere}&value=${value}`);
-  },
   getSneakers,
   getSneakerByName,
   getSneakersBySize,

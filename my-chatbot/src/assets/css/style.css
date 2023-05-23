@@ -1,42 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
 
 .chat-container {
-    font-family: "Open Sans";
-    max-width: 350px;
-    height: 500px;
+    width: 350px;
     margin: 0 auto;
     padding: 10px;
+    border-radius: 3%;
     background-color: beige;
+    font-family: "Open Sans";
 }
 
 .messages {
+    position: relative;
     height: 520px;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #8b6c42;
+    border-radius: 10px;
+  }
+
 .message-list {
+    position: relative;
     padding: 0;
     list-style: none;
 }
 
-.message-list li {
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.message-list .user {
-    background-color: #8b6c42;
-    text-align: right;
-    margin-left: auto;
-}
-
 .user {
+    padding: 3px;
     max-width: fit-content;
+    margin: 5px 5px 5px auto;
     color: white;
+    background-color: #8b6c42;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: end;
 }
 
 .bot {
+    margin: 5px;
     text-align: left;
 }
 
@@ -88,6 +101,35 @@ button:hover {
     margin-bottom: 4px;
 }
 
+.button-panier {
+    position: relative;
+    height: 30px;
+    font-weight: bold;
+    border-radius: 5%;
+    color: white;
+    border: none;
+    background-color: #8b6c42;
+}
+.button-panier:hover {
+    color: black;
+    background-color: #ffffccca;
+}
+
+.button-send {
+    position: relative;
+    height: 30px;
+    font-weight: bold;
+    border-radius: 5%;
+    color: white;
+    border: none;
+    background-color: #8b6c42;
+}
+
+.button-send:hover {
+    color: black;
+    background-color: #ffffccca;
+}
+
 .cart-popup {
     position: fixed;
     top: 50%;
@@ -116,7 +158,7 @@ h3 {
     margin: 0px 30px 30px 30px;
     text-align: left;
     background-color: beige;
-    border-radius: 5%;
+    border-radius: 3%;
 }
 
 .commandes-dispo {
@@ -127,10 +169,6 @@ h3 {
 
 .commandes-dispo li {
     padding-bottom: 10px;
-}
-
-.chat-container {
-    width: 70%;
 }
 
 .add-to-cart-btn {
@@ -144,5 +182,4 @@ h3 {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-  }
-  
+}
