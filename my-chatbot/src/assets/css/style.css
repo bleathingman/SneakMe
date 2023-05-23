@@ -5,7 +5,7 @@
     margin: 0 auto;
     padding: 10px;
     border-radius: 3%;
-    background-color: beige;
+    background-color: #0033cc8f;
     font-family: "Open Sans";
 }
 
@@ -27,7 +27,7 @@
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #8b6d42b0;
+    background: #0033cc8f;
     border-radius: 10px;
   }
 
@@ -42,7 +42,7 @@
     max-width: fit-content;
     margin: 5px 5px 5px auto;
     color: white;
-    background-color: #8b6c42;
+    background-color: #0033cc;
     border-radius: 5px;
     font-size: 16px;
     text-align: end;
@@ -51,6 +51,8 @@
 .bot {
     margin: 8px;
     text-align: left;
+    color:white;
+    font-weight: 300;
 }
 
 .input-container {
@@ -62,7 +64,7 @@
 .input-container input {
     flex-grow: 1;
     padding: 5px;
-    border-color: #8b6c42;
+    border:none;
 }
 
 .input-container button {
@@ -73,12 +75,12 @@ input[type="text"] {
     flex-grow: 1;
     border-radius: 4px;
     margin-right: 8px;
-    border-color: #8b6c42;
+    border-color: #0033cc;
 }
 
 button {
     font-size: 14px;
-    background-color: #8b6c42;
+    background-color: #0033cc;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -88,7 +90,7 @@ button {
 button:hover {
     background-color: white;
     color: #000000;
-    border: 2px solid #7b7b7b;
+    border:none;
     border-radius: 2px;
 }
 
@@ -107,12 +109,12 @@ button:hover {
     font-weight: bold;
     border-radius: 5%;
     color: white;
-    border: none;
-    background-color: #8b6c42;
+    background-color: #0033cc;
 }
 .button-panier:hover {
-    color: black;
-    background-color: #ffffccca;
+    color: #0033cc;
+    background-color: white;
+    border: 5px #0033cc;
 }
 
 .button-send {
@@ -122,12 +124,12 @@ button:hover {
     border-radius: 5%;
     color: white;
     border: none;
-    background-color: #8b6c42;
+    background-color: #0033cc;
 }
 
 .button-send:hover {
-    color: black;
-    background-color: #ffffccca;
+    color: #0033cc;
+    background-color: white;
 }
 
 .cart-popup {
@@ -135,8 +137,7 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ffffccca;
-    border: 1px solid black;
+    background-color: #0033cc;
     padding: 20px;
     z-index: 999;
 }
@@ -157,8 +158,9 @@ h3 {
     height: auto;
     margin: 0px 30px 30px 30px;
     text-align: left;
-    background-color: beige;
+    background-color: #0033cc8f;
     border-radius: 3%;
+    color:white;
 }
 
 .commandes-dispo {
@@ -172,7 +174,7 @@ h3 {
 }
 
 .add-to-cart-btn {
-    background-color: #ffffccca;
+    background-color: #0033cc;
     border: none;
     color: white;
     padding: 8px 16px;
