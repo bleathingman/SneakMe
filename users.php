@@ -111,7 +111,6 @@ $conn->close();
                 </tbody>
             </table>
         </div>
-        <input class="btn btn-add" type="submit" value="Ajouter un utilisateur">
     </div>
 </body>
 
