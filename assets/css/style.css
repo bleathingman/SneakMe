@@ -254,7 +254,7 @@ img {
 .btn-xp {
     display: inline-block;
     padding: 4px 8px;
-    border: 1px solid grey;
+    border: 3px solid grey;
     background-color: #ffffcc;
     text-decoration: none;
     font-size: 14px;
@@ -268,7 +268,9 @@ img {
 .btn-xp:hover {
     background-color: #ffffcc;
     color: #000000;
+    border: 1px solid #000000;
 }
+
 
 /* Styles pour le bouton Modifier et Supprimer un produit */
 
