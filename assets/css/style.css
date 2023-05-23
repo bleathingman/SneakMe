@@ -10,13 +10,14 @@ body {}
     background-color: #ffffcc;
     overflow-x: hidden;
     padding-top: 20px;
+    color: #000000;
 }
 
 .sidebar a {
     display: block;
     padding: 10px;
     text-decoration: none;
-    color: #E5E5E5;
+    color: black;
     font-size: 18px;
     border-bottom: 1px solid #25282C;
 }
@@ -37,7 +38,7 @@ body {}
 
 .sidebar a i {
     margin-right: 10px;
-    color: #E5E5E5;
+    color: black;
 }
 
 @media (max-width: 768px) {
@@ -284,14 +285,12 @@ body {
 .btn {
     display: inline-block;
     padding: 4px 8px;
-    border: 1px solid grey;
+    border: 2px solid grey;
     background-color: #ffffcc;
     text-decoration: none;
     font-size: 14px;
     color: #333;
     cursor: pointer;
-    border-radius: 3px;
-    box-shadow: inset 0 0 3px #7A9BBE;
     transition: background-color 0.3s;
 }
 
