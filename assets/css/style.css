@@ -1,28 +1,37 @@
 /* style.css */
 
-body {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
+*{
     margin: 0;
     padding: 0;
-    background-color: #f6f6f6;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    height: 100%;
     font-family: Arial, sans-serif;
 }
 
+.container {
+    margin: auto;
+    overflow: auto;
+}
+
+.logo {
+    height: auto;
+}
+
 .sidebar {
-    height: 100%;
-    width: 200px;
-    top: 0;
-    left: 0;
     background-color: #0033cc8f;
     overflow-x: hidden;
-    padding-top: 20px;
     color: #000000;
 }
 
 .sidebar a {
-    display: block;
+    display: flex;
     padding: 10px;
     text-decoration: none;
     color: #ffffff;
@@ -47,18 +56,6 @@ body {
 .sidebar a i {
     margin-right: 10px;
     color: black;
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-
-    .sidebar a {
-        float: left;
-    }
 }
 
 
@@ -191,17 +188,40 @@ img {
 
 
 .scrollable {
-    height: 500px;
+    max-height: 500px;
     overflow-y: scroll;
-    padding: 20px;
 }
 
 /* Styles pour le formulaire */
-.form {
-    color: #ffffff;
+.form-product {
+    color: #fff;
     background-color: #0033cc8f;
     padding: 20px;
-    border: 1px solid grey;
+    border: 1px solid #808080;
+    box-shadow: 0 0 5px #ffffcc;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.form-user {
+    color: #fff;
+    background-color: #0033cc8f;
+    padding: 20px;
+    border: 1px solid #808080;
+    box-shadow: 0 0 5px #ffffcc;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.form-request {
+    color: #fff;
+    background-color: #0033cc8f;
+    padding: 20px;
+    border: 1px solid #808080;
     box-shadow: 0 0 5px #ffffcc;
     width: 100%;
     box-sizing: border-box;
@@ -213,6 +233,7 @@ img {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Deux colonnes avec largeur flexible */
     grid-gap: 20px;
+    padding-bottom: 10px;
 }
 
 .form-group>div {
@@ -227,16 +248,11 @@ img {
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group input[type="file"] {
-    background-color: white;
+    background-color: #fff;
     border: 1px solid #ffffcc;
     padding: 8px 12px; /* Augmenter le padding pour un meilleur espacement */
     font-size: 14px;
     border-radius: 3px;
-    width: 100%; /* Le champ prend tout l'espace disponible */
-}
-
-.form-group input[type="file"] {
-    padding: 8px 0;
 }
 
 .form-group input[type="submit"] {
@@ -271,44 +287,53 @@ img {
 
 /* Styles pour le bouton Modifier et Supprimer un produit */
 
-.btn {
-    display: inline-block;
-    padding: 4px 8px;
-    border: 2px solid grey;
-    background-color: #ffffcc;
+.btn-edit {
+    margin-right: 5px;
+    padding: 10px;
+    font-family: arial;
+    font-size: 16px;
     text-decoration: none;
-    font-size: 14px;
-    color: #ffffff;
-    cursor: pointer;
+    color: #fff;
+    background-color: #355bcf;
+    border-radius: 5px;
+    border: none;
     transition: background-color 0.3s;
 }
 
 .btn-edit:hover {
-    background-color: #D3D3FF;
-}
-
-.btn-edit {
-    margin-right: 4px;
+    background-color: #0040ff;
 }
 
 .btn-delete {
-    color: beige;
-}
-
-.btn-delete:hover {
-    background-color: #FFB6B6;
-}
-
-.btn .btn-add {
-    padding: 8px 16px;
-    font-size: 14px;
-    color: #ffffff !important;
-    background-color: #0033cc;
-    cursor: pointer;
-    border-radius: 3px;
+    padding: 10px;
+    font-family: arial;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #da4644;
+    border-radius: 5px;
+    border: none;
     transition: background-color 0.3s;
 }
 
+.btn-delete:hover {
+    background-color: #ff0000;
+}
+
+.btn-add {
+    width: 100%;
+    padding: 10px;
+    font-family: arial;
+    font-size: 16px;
+    text-decoration: none;
+    color: #FFFFFF;
+    background-color: #0033cc;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s;
+}
+    
+    
 .btn-add:hover {
     background-color: #0033cc8f;
 }

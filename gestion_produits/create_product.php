@@ -29,7 +29,7 @@ try {
         $stmt->bind_param("ssssds", $product_name, $brand, $color, $size, $price, $image);
         $stmt->execute();
 
-        header("Location: ../index.php");
+        header("Location: ../products.php");
     } else {
         throw new Exception("Erreur: méthode de requête invalide.");
     }
@@ -37,4 +37,3 @@ try {
     echo "Erreur: " . $e->getMessage();
     die;
 }
-?>
