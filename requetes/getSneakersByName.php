@@ -10,9 +10,12 @@ $conn = connectDB();
 
 $product_name = $_GET['product_name'];
 
-$sql = "SELECT * FROM products WHERE product_name = '$product_name'";
+$stmt = $conn->prepare("SELECT * FROM products WHERE product_name = ?");
+$stmt->bind_param("s", $product_name);
 
-$result = $conn->query($sql);
+$stmt->execute();
+
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     // Récupérer les résultats
@@ -27,5 +30,5 @@ if ($result->num_rows > 0) {
     echo json_encode(['error' => 'Aucune sneaker trouvée avec le nom "' . $product_name . '".']);
 }
 
-
+$stmt->close();
 $conn->close();

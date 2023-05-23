@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <button class="button-panier" @click="showCart = true">Afficher le panier</button>
+    <button class="button-panier" @click="showCart = true">
+      Afficher le panier
+    </button>
     <div v-if="showCart" class="cart-popup">
       <button @click="showCart = false">Fermer</button>
       <ul>
@@ -33,14 +35,35 @@
       <div class="chat-container">
         <div class="messages" ref="messagesContainer">
           <ul class="message-list">
-            <li v-for="(message, index) in messages" :key="index" :class="message.sender">
-              <bot-response v-if="message.sender === 'bot'" :type="message.type" :data="message.data"
-                @add-to-cart="addToCart"></bot-response>
-              <component :is="'div'" v-html="message.text" :class="message.sender" v-on="this.$listeners">
+            <li
+              v-for="(message, index) in messages"
+              :key="index"
+              :class="message.sender"
+            >
+              <bot-response
+                v-if="message.sender === 'bot'"
+                :type="message.type"
+                :data="message.data"
+                @add-to-cart="addToCart"
+              ></bot-response>
+              <component
+                :is="'div'"
+                v-html="message.text"
+                :class="message.sender"
+                v-on="this.$listeners"
+              >
               </component>
-              <sneaker-info v-if="message.sneaker" :sneaker="message.sneaker" @add-to-cart="addToCart"></sneaker-info>
+              <sneaker-info
+                v-if="message.sneaker"
+                :sneaker="message.sneaker"
+                @add-to-cart="addToCart"
+              ></sneaker-info>
               <!-- Ajoutez le bouton "Ajouter au panier" pour chaque sneaker -->
-              <button v-if="message.sneakerId" @click="addToCart(message.sneakerId)" class="add-to-cart-btn">
+              <button
+                v-if="message.sneakerId"
+                @click="addToCart(message.sneakerId)"
+                class="add-to-cart-btn"
+              >
                 Ajouter au panier
               </button>
             </li>
@@ -66,7 +89,7 @@ export default {
       userMessage: '',
       messages: [],
       showCart: false,
-      cartProducts: [],
+      cart: [],
     };
   },
   methods: {
@@ -78,13 +101,18 @@ export default {
       // Initialiser la réponse du bot
       let botResponse = '';
       // Vérifier si le message de l'utilisateur commence par "sneaker info"
-      if (this.userMessage && typeof this.userMessage === 'string' && this.userMessage.toLowerCase().startsWith('sneaker info ')) {
-        const productName = this.userMessage.substring('sneaker info '.length).trim();
+      if (
+        this.userMessage &&
+        typeof this.userMessage === 'string' &&
+        this.userMessage.toLowerCase().startsWith('sneaker info')
+      ) {
+        const productName = this.userMessage
+          .substring('sneaker info '.length)
+          .trim();
         try {
           // Faire une requête à l'API pour obtenir les informations sur la sneaker
-          const response = await api.getSneakerByName(productName);
-          console.log('API response:', response);
-          const sneaker = response.data.data;
+          const sneaker = await api.getSneaker(productName);
+          console.log('API response:', sneaker);
 
           // Vérifier s'il n'y a pas d'erreur dans la réponse de l'API
           if (sneaker && !sneaker.error) {
@@ -103,7 +131,8 @@ export default {
         } catch (error) {
           // Gérer les erreurs lors de la requête à l'API
           console.error('Error fetching sneaker info:', error);
-          botResponse = "Désolé, une erreur s'est produite lors de la récupération des informations de la sneaker.";
+          botResponse =
+            "Désolé, une erreur s'est produite lors de la récupération des informations de la sneaker.";
           this.messages.push({ sender: 'bot', text: botResponse });
         }
       } else {
@@ -123,8 +152,9 @@ export default {
               sneakers.forEach((sneaker, index) => {
                 this.messages.push({
                   sender: 'bot',
-                  text: `${index + 1}. ${sneaker.product_name} - ${sneaker.price
-                    } €`,
+                  text: `${index + 1}. ${sneaker.product_name} - ${
+                    sneaker.price
+                  } €`,
                   imageUrl: sneaker.image_url,
                   sneakerId: sneaker.id, // Ajoutez l'ID de la sneaker pour pouvoir l'ajouter au panier
                 });
@@ -157,11 +187,8 @@ export default {
       container.scrollTop = container.scrollHeight;
     },
     // Ajout au panier d'un produit
-    addToCart(productId) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push(productId);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      this.updateCartProducts();
+    addToCart(sneakerId) {
+      this.cart.push(sneakerId);
     },
     updateCartProducts() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
