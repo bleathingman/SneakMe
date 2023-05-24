@@ -30,7 +30,7 @@ error_reporting(E_ALL);
 	<?php require "templates/header.php"; ?>
 
 
-	<div class="container" id="scroll">
+	<div class="container">
 		<h1>Gestion des produits</h1>
 
 		<!-- Formulaire de création de produit -->
