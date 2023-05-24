@@ -15,7 +15,7 @@ $row = $result->fetch_assoc();
 </head>
 
 <body>
-    <?php require "../templates/header.php"; ?>
+    <?php require "../templates/header_modif.php"; ?>
     <div class="container">
         <h1>Modifier l'utilisateur</h1>
 
