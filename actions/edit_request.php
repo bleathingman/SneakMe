@@ -19,7 +19,7 @@ $row = $result->fetch_assoc();
     <div class="container">
         <h1>Modifier la requête</h1>
 
-        <form class="form" action="update_request.php" method="post" enctype="multipart/form-data">
+        <form class="form-edit-request" action="update_request.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
             <div class="form-group">
                 <label for="user_message">Message de l'utilisateur :</label>
@@ -27,6 +27,9 @@ $row = $result->fetch_assoc();
 
                 <label for="bot_message">Message du chatbot :</label>
                 <input type="text" id="bot_message" name="bot_message" value="<?php echo $row['bot_message']; ?>" required>
+                
+                <label for="description">Description de la commande :</label>
+                <input type="text" id="description" name="description" value="<?php echo $row['description']; ?>" required>
             </div>
             <input class="btn-success" type="submit" value="Mettre à jour">
         </form>

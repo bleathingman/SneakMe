@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8080/api/',
+  baseURL: 'http://localhost/sneakme/api/',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
 });
+
 
 // récupère 5 sneakers / produits
 async function getSneakers() {
@@ -37,8 +38,25 @@ async function getProductsByCritere(critere, value) {
   return response;
 }
 
+// récupère les commandes de chatbot par la commande
+async function getChatBotCommand(command) {
+  const response = await apiClient.get(
+    `/getChatBotCommand.php?command=${encodeURIComponent(command)}`
+  );
+  return response;
+}
+
+// récupère les commands réalisable et stocker
+async function getCommands() {
+  const response = await apiClient.get('/getCommands.php');
+  return response;
+}
+
+
 export default {
   getSneakers,
   getSneakerByName,
   getSneakersBySize,
+  getChatBotCommand,
+  getCommands,
 };

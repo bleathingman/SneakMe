@@ -12,9 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $user_message = $_POST["user_message"];
     $bot_message = $_POST["bot_message"];
+    $description = $_POST["description"];
 
     // Insert request into the database
-    $sql = "INSERT INTO request_chat (user_message, bot_message) VALUES ('$user_message', '$bot_message')";
+    $sql = "INSERT INTO request_chat (user_message, bot_message, description) VALUES ('$user_message', '$bot_message', '$description')";
     if ($conn->query($sql) === TRUE) {
         header("Location: chatbot_requests.php");
         exit;

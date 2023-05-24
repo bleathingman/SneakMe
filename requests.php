@@ -53,6 +53,8 @@ $conn->close();
                 <input type="text" id="user_message" name="user_message" required>
                 <label for="bot_message">Message du chatbot :</label>
                 <input type="text" id="bot_message" name="bot_message" required>
+                <label for="description">Description de la commandes :</label>
+                <input type="text" id="description" name="description" required>
             </div>
             <input class="btn btn-add" type="submit" value="Ajouter la requête">
         </form>
@@ -65,6 +67,7 @@ $conn->close();
                         <th>ID</th>
                         <th>Message de l'utilisateur</th>
                         <th>Message du chatbot</th>
+                        <th>Description</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -75,6 +78,7 @@ $conn->close();
                         echo "<td>" . $request["id"] . "</td>";
                         echo "<td>" . $request["user_message"] . "</td>";
                         echo "<td>" . $request["bot_message"] . "</td>";
+                        echo "<td>" . $request["description"] . "</td>";
                         echo "<td>";
                         echo "<a class='btn btn-edit' href='actions/edit_request.php?id=" . $request["id"] . "' onclick='openEditModal(event)'>Modifier</a>";
                         echo "<a class='btn btn-delete' href='?delete_id=" . $request["id"] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer cette requête ?\")'>Supprimer</a>";
