@@ -85,7 +85,7 @@ error_reporting(E_ALL);
 					$result = $conn->query("SELECT * FROM products");
 					while ($row = $result->fetch_assoc()) {
 						echo "<tr>";
-						echo "<td><img src='gestion_produits/uploads/" . htmlspecialchars($row["image"]) . "' alt='Image du produit " . htmlspecialchars($row["product_name"]) . "' width='100'></td>";
+						echo "<td><img class='image-table' src='./gestion_produits/uploads/" . htmlspecialchars($row["image"]) . "' alt='Image du produit " . htmlspecialchars($row["product_name"]) . "' width='100'></td>";
 						echo "<td>" . htmlspecialchars($row["product_name"]) . "</td>";
 						echo "<td>" . htmlspecialchars($row["brand"]) . "</td>";
 						echo "<td>" . htmlspecialchars($row["color"]) . "</td>";

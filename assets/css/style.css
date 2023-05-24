@@ -397,6 +397,11 @@ img {
     background-color: #0033cc8f;
 }
 
+.image-table {
+    width: 125px;
+    height: 85px;
+}
+
 /*Flemme de faire autrement*/
 .copyright {
     position: absolute;

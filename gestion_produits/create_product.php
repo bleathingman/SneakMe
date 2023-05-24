@@ -20,9 +20,15 @@ try {
         $price = $_POST["price"];
         $image = $_FILES["image"]["name"];
 
-        $target_dir = "uploads/";
+        $target_dir = "./uploads/";
         $target_file = $target_dir . basename($image);
-        move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+            echo "Le fichier " . basename($image) . " a été téléchargé.";
+        } else {
+            echo "Désolé, il y a eu une erreur lors du téléchargement de votre fichier.";
+            exit;
+        }
 
         $sql = "INSERT INTO products (product_name, brand, color, size, price, image) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
@@ -30,6 +36,7 @@ try {
         $stmt->execute();
 
         header("Location: ../products.php");
+        exit;
     } else {
         throw new Exception("Erreur: méthode de requête invalide.");
     }

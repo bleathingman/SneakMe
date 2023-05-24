@@ -4,19 +4,36 @@
       <div class="commands-list">
         <h3>Commandes disponibles :</h3>
         <ul class="commandes-dispo">
-          <li class="commands-in-list" v-for="command in commands" :key="command.bot_message">
-            <strong>{{ command.bot_message }}</strong> - {{ command.description }}
+          <li
+            class="commands-in-list"
+            v-for="command in commands"
+            :key="command.bot_message"
+          >
+            <strong>{{ command.bot_message }}</strong> -
+            {{ command.description }}
           </li>
         </ul>
       </div>
       <div class="chat-container">
         <div class="messages" ref="messagesContainer">
           <ul class="message-list">
-            <li v-for="(message, index) in messages" :key="index" :class="message.sender">
-              <bot-response v-if="message.sender === 'bot'" :type="message.type" :data="message.data"
-                @add-to-cart="addToCart"></bot-response>
+            <li
+              v-for="(message, index) in messages"
+              :key="index"
+              :class="message.sender"
+            >
+              <bot-response
+                v-if="message.sender === 'bot'"
+                :type="message.type"
+                :data="message.data"
+                @add-to-cart="addToCart"
+              ></bot-response>
               <div v-else v-html="message.text"></div>
-              <sneaker-info v-if="message.sneaker" :sneaker="message.sneaker" @add-to-cart="addToCart"></sneaker-info>
+              <sneaker-info
+                v-if="message.sneaker"
+                :sneaker="message.sneaker"
+                @add-to-cart="addToCart"
+              ></sneaker-info>
             </li>
           </ul>
         </div>
@@ -29,9 +46,17 @@
         <h3>Mon panier :</h3>
         <h4>Total : {{ totalAmount.toFixed(2) }} €</h4>
         <ul class="cart-dispo">
-          <li class="sneaker-in-cart" v-for="(product, index) in cartProducts" :key="product.id">
-            <img :src="imageUrl(product)" alt="Image of the product" class="sneakers-image">
-            <br>
+          <li
+            class="sneaker-in-cart"
+            v-for="(product, index) in cartProducts"
+            :key="product.id"
+          >
+            <img
+              :src="imageUrl(product)"
+              alt="Image of the product"
+              class="sneakers-image"
+            />
+            <br />
             <strong>{{ product.product_name }}</strong> - {{ product.price }} €
             <button @click="removeFromCart(index)">X</button>
           </li>
@@ -43,7 +68,7 @@
 
 <script>
 import api from '@/services/api';
-import { BASE_URL } from "../store/constants.js";
+import { BASE_URL } from '../store/constants.js';
 import SneakerInfo from './SneakerInfo.vue';
 import BotResponse from './BotResponse.vue';
 
@@ -89,18 +114,24 @@ export default {
                 sender: 'bot',
                 text: `${index + 1}. ${sneaker.product_name}`,
                 sneakerId: sneaker.id,
-                sneaker: sneaker
+                sneaker: sneaker,
               });
             });
           } else {
-            this.messages.push({ sender: 'bot', text: 'Désolé, il n\'y a actuellement aucune sneaker disponible.' });
+            this.messages.push({
+              sender: 'bot',
+              text: "Désolé, il n'y a actuellement aucune sneaker disponible.",
+            });
           }
         } catch (error) {
           console.error('Error fetching sneakers:', error);
-          botResponse = "Désolé, une erreur s'est produite lors de la récupération des sneakers.";
+          botResponse =
+            "Désolé, une erreur s'est produite lors de la récupération des sneakers.";
         }
       } else if (this.userMessage.toLowerCase().startsWith('sneaker info ')) {
-        let sneakerName = this.userMessage.toLowerCase().replace('sneaker info ', '');
+        let sneakerName = this.userMessage
+          .toLowerCase()
+          .replace('sneaker info ', '');
         try {
           const response = await api.getSneakerByName(sneakerName);
           if (response.data.error) {
@@ -110,10 +141,15 @@ export default {
           }
         } catch (error) {
           console.error('Erreur lors de la récupération de la sneaker:', error);
-          botResponse = "Désolé, une erreur s'est produite lors de la récupération de la sneaker.";
+          botResponse =
+            "Désolé, une erreur s'est produite lors de la récupération de la sneaker.";
         }
-      } else if (this.userMessage.toLowerCase().startsWith('ajouter au panier ')) {
-        let sneakerName = this.userMessage.toLowerCase().replace('ajouter au panier ', '');
+      } else if (
+        this.userMessage.toLowerCase().startsWith('ajouter au panier ')
+      ) {
+        let sneakerName = this.userMessage
+          .toLowerCase()
+          .replace('ajouter au panier ', '');
         try {
           const sneakerInfoResponse = await api.getSneakerByName(sneakerName);
           if (sneakerInfoResponse.data.error) {
@@ -123,16 +159,25 @@ export default {
             botResponse = `Le produit ${sneakerName} a été ajouté à votre panier.`;
           }
         } catch (error) {
-          console.error('Erreur lors de l\'ajout de la sneaker au panier:', error);
-          botResponse = "Désolé, une erreur s'est produite lors de l'ajout de la sneaker au panier.";
+          console.error(
+            "Erreur lors de l'ajout de la sneaker au panier:",
+            error
+          );
+          botResponse =
+            "Désolé, une erreur s'est produite lors de l'ajout de la sneaker au panier.";
         }
       } else {
         try {
-          const commandResponse = await api.getChatBotCommand(this.userMessage.toLowerCase());
+          const commandResponse = await api.getChatBotCommand(
+            this.userMessage.toLowerCase()
+          );
           botResponse = commandResponse.data;
+          console.log('Command response:', commandResponse); // log the entire response
+          console.log('Command response data:', commandResponse.data);
         } catch (error) {
           console.error('Error fetching command:', error);
-          botResponse = "Désolé, une erreur s'est produite lors de la récupération de la commande.";
+          botResponse =
+            "Désolé, une erreur s'est produite lors de la récupération de la commande.";
         }
       }
       if (botResponse) {
@@ -168,7 +213,7 @@ export default {
       }, 0);
     },
     imageUrl() {
-      return product => {
+      return (product) => {
         return BASE_URL + product.image;
       };
     },
@@ -179,4 +224,3 @@ export default {
   },
 };
 </script>
-s

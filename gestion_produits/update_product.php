@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->execute();
-    header("Location: ../index.php");
+    header("Location: ../products.php");
 } else {
     echo "Erreur: méthode de requête invalide.";
 }
