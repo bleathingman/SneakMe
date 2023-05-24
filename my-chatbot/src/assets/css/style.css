@@ -20,6 +20,7 @@ nav {
     height: auto;
     width: 100px;
     left: 0;
+    top: -10px;
 }
 
 .messages {
@@ -136,15 +137,22 @@ button:hover {
     position: relative;
     height: 30px;
     font-weight: bold;
-    border-radius: 5%;
     color: white;
-    border: none;
     background-color: #0033cc;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s;
+    cursor: pointer;
 }
 
 .button-send:hover {
     color: #0033cc;
     background-color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s;
+    cursor: pointer;
 }
 
 .content-wrapper {
@@ -153,7 +161,8 @@ button:hover {
     padding-top: 20px;
 }
 
-h3, h4 {
+h3,
+h4 {
     text-align: center;
 }
 
@@ -195,21 +204,28 @@ h3, h4 {
 
 .cart-dispo {
     list-style: none;
+    max-height: 500px;
+    overflow-y: scroll;
 }
 
 .sneaker-in-cart {
     padding-bottom: 10px;
 }
 
-.add-to-cart-btn {
-    background-color: #0033cc;
-    border: none;
-    color: white;
+.sneakers-image {
+    width: 90px;
+    height: 75px;
+}
+
+.add-to-cart {
+    margin: 4px 2px;
     padding: 8px 16px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-to-cart:hover {
+    color: #0033cc;
+    border-radius: 5px;
 }

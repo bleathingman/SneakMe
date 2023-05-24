@@ -15,8 +15,7 @@
             <li v-for="(message, index) in messages" :key="index" :class="message.sender">
               <bot-response v-if="message.sender === 'bot'" :type="message.type" :data="message.data"
                 @add-to-cart="addToCart"></bot-response>
-              <component :is="'div'" v-html="message.text" :class="message.sender" v-on="this.$listeners">
-              </component>
+              <div v-else v-html="message.text"></div>
               <sneaker-info v-if="message.sneaker" :sneaker="message.sneaker" @add-to-cart="addToCart"></sneaker-info>
             </li>
           </ul>
@@ -31,6 +30,8 @@
         <h4>Total : {{ totalAmount.toFixed(2) }} €</h4>
         <ul class="cart-dispo">
           <li class="sneaker-in-cart" v-for="(product, index) in cartProducts" :key="product.id">
+            <img :src="imageUrl(product)" alt="Image of the product" class="sneakers-image">
+            <br>
             <strong>{{ product.product_name }}</strong> - {{ product.price }} €
             <button @click="removeFromCart(index)">X</button>
           </li>
@@ -42,6 +43,7 @@
 
 <script>
 import api from '@/services/api';
+import { BASE_URL } from "../store/constants.js";
 import SneakerInfo from './SneakerInfo.vue';
 import BotResponse from './BotResponse.vue';
 
@@ -56,16 +58,14 @@ export default {
     };
   },
   async created() {
-    // Charger les commandes quand le composant est créé
     this.loadCommands();
   },
   methods: {
     async loadCommands() {
       try {
         const response = await api.getCommands();
-        // Vérifiez si la réponse contient des commandes
         if (response.data.length > 0) {
-          this.commands = response.data; // Utilisez directement le tableau retourné par l'API
+          this.commands = response.data;
         } else {
           console.log('Aucune commande disponible.');
         }
@@ -74,50 +74,73 @@ export default {
       }
     },
     async sendMessage() {
-      // Vérifier si le message est vide
       if (this.userMessage.trim() === '') return;
-      // Ajouter le message de l'utilisateur aux messages
-      this.messages.push({ sender: 'user', text: this.userMessage });
-      // Initialiser la réponse du bot
-      let botResponse = '';
-      // Gérer les commandes utilisateur
-      switch (this.userMessage.toLowerCase()) {
-        case 'liste sneakers':
-          try {
-            const response = await api.getSneakers();
-            // Vérifier si la réponse contient des sneakers
-            if (response.data.length > 0) {
-              response.data.forEach((sneaker, index) => {
-                this.messages.push({
-                  sender: 'bot',
-                  text: `${index + 1}. ${sneaker.product_name}`,
-                  sneakerId: sneaker.id, // Ajoutez cette ligne si vous avez un id pour chaque sneaker
-                  sneaker: sneaker // Si vous voulez passer l'objet sneaker complet
-                });
-              });
-            } else {
-              this.messages.push({ sender: 'bot', text: 'Désolé, il n\'y a actuellement aucune sneaker disponible.' });
-            }
-          } catch (error) {
-            console.error('Error fetching sneakers:', error);
-            botResponse = "Désolé, une erreur s'est produite lors de la récupération des sneakers.";
-          }
-          break;
-        default:
-          try {
-            const commandResponse = await api.getChatBotCommand(this.userMessage.toLowerCase());
-            botResponse = commandResponse.data;
-          } catch (error) {
-            console.error('Error fetching command:', error);
-            botResponse = "Désolé, une erreur s'est produite lors de la récupération de la commande.";
-          }
-      }
 
-      // Ajouter la réponse du bot aux messages
-      this.messages.push({ sender: 'bot', text: botResponse });
-      // Vider le champ de saisie du message utilisateur
+      this.messages.push({ sender: 'user', text: this.userMessage });
+
+      let botResponse = '';
+
+      if (this.userMessage.toLowerCase() === 'liste sneakers') {
+        try {
+          const response = await api.getSneakers();
+          if (response.data.length > 0) {
+            response.data.forEach((sneaker, index) => {
+              this.messages.push({
+                sender: 'bot',
+                text: `${index + 1}. ${sneaker.product_name}`,
+                sneakerId: sneaker.id,
+                sneaker: sneaker
+              });
+            });
+          } else {
+            this.messages.push({ sender: 'bot', text: 'Désolé, il n\'y a actuellement aucune sneaker disponible.' });
+          }
+        } catch (error) {
+          console.error('Error fetching sneakers:', error);
+          botResponse = "Désolé, une erreur s'est produite lors de la récupération des sneakers.";
+        }
+      } else if (this.userMessage.toLowerCase().startsWith('sneaker info ')) {
+        let sneakerName = this.userMessage.toLowerCase().replace('sneaker info ', '');
+        try {
+          const response = await api.getSneakerByName(sneakerName);
+          if (response.data.error) {
+            this.messages.push({ sender: 'bot', text: response.data.error });
+          } else {
+            this.messages.push({ sender: 'bot', sneaker: response.data });
+          }
+        } catch (error) {
+          console.error('Erreur lors de la récupération de la sneaker:', error);
+          botResponse = "Désolé, une erreur s'est produite lors de la récupération de la sneaker.";
+        }
+      } else if (this.userMessage.toLowerCase().startsWith('ajouter au panier ')) {
+        let sneakerName = this.userMessage.toLowerCase().replace('ajouter au panier ', '');
+        try {
+          const sneakerInfoResponse = await api.getSneakerByName(sneakerName);
+          if (sneakerInfoResponse.data.error) {
+            botResponse = sneakerInfoResponse.data.error;
+          } else {
+            this.addToCart(sneakerInfoResponse.data);
+            botResponse = `Le produit ${sneakerName} a été ajouté à votre panier.`;
+          }
+        } catch (error) {
+          console.error('Erreur lors de l\'ajout de la sneaker au panier:', error);
+          botResponse = "Désolé, une erreur s'est produite lors de l'ajout de la sneaker au panier.";
+        }
+      } else {
+        try {
+          const commandResponse = await api.getChatBotCommand(this.userMessage.toLowerCase());
+          botResponse = commandResponse.data;
+        } catch (error) {
+          console.error('Error fetching command:', error);
+          botResponse = "Désolé, une erreur s'est produite lors de la récupération de la commande.";
+        }
+      }
+      if (botResponse) {
+        this.messages.push({ sender: 'bot', text: botResponse });
+      }
+      // rend vide la zone de text
       this.userMessage = '';
-      // Faire défiler vers le bas pour afficher le dernier message
+      // permet de voir toujours le dernier message
       this.$nextTick(() => {
         this.scrollToBottom();
       });
@@ -127,11 +150,9 @@ export default {
       container.scrollTop = container.scrollHeight;
     },
     addToCart(product) {
-      // Ajouter le produit au panier
       this.cart.push(product);
-      // Afficher une notification de confirmation
       alert(`Produit ajouté au panier : ${product.product_name}`);
-      console.log(this.cart); // Ajouter cette ligne
+      console.log(this.cart);
     },
     removeFromCart(index) {
       this.cart.splice(index, 1);
@@ -145,7 +166,12 @@ export default {
       return this.cart.reduce((total, product) => {
         return total + parseFloat(product.price);
       }, 0);
-    }
+    },
+    imageUrl() {
+      return product => {
+        return BASE_URL + product.image;
+      };
+    },
   },
   components: {
     SneakerInfo,
@@ -153,3 +179,4 @@ export default {
   },
 };
 </script>
+s

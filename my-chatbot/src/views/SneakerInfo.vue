@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div>ID : {{ sneaker.id }} </div>
+    <img class="sneakers-image" :src="imageUrl" alt="Sneaker image">
+    <br>
+    <!-- <div>ID : {{ sneaker.id }} </div> -->
+    <strong>{{ sneaker.product_name }} </strong>
     <div>Prix : {{ sneaker.price }} €</div>
     <div>Couleur : {{ sneaker.color }}</div>
     <div>Taille : {{ sneaker.size }}</div>
@@ -8,9 +11,11 @@
       Ajouter au panier
     </button>
   </div>
+  ---------------------------------------------------------
 </template>
 
 <script>
+import { BASE_URL } from "../store/constants.js";
 export default {
   props: {
     sneaker: {
@@ -18,5 +23,10 @@ export default {
       required: true,
     },
   },
+  computed: {
+    imageUrl() {
+      return BASE_URL + this.sneaker.image;
+    }
+  }
 };
 </script>
